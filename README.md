@@ -1,5 +1,7 @@
 # OI-Trainer - CQYC Version
 
+<https://oit.oracynx.com>
+
 添加了一些 CQYC 选手的名称，以及一些自定义的字段。
 
 如果希望移除名字，可以通过 `oracynx@gmail.com` 或 <https://t.me/Oracynx> 取得联系。
