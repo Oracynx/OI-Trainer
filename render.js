@@ -1707,19 +1707,19 @@ function calculateFinalEnding(gameData, endingReason) {
     }
 
     if(norm === 'AKIOI'){
-      return "👑 AKIOI";
+      return "👑 前无古人";
     }
     
     if(norm === '顶尖结局'){
-      return "🌟 顶尖结局";
+      return "🌟 登峰造极";
     }
     
     if (gameData.inNationalTeam === true) {
-      return "🌟 荣耀结局";
+      return "🌟 名扬四海";
     }
     
     if (gameData.budget <= 0) {
-      return "💸 经费耗尽结局";
+      return "💸 捉襟见肘";
     }
     
     let hasNoiGold = false;
@@ -1738,23 +1738,23 @@ function calculateFinalEnding(gameData, endingReason) {
     }
     
     if (hasNoiGold) {
-      return "🌟 荣耀结局";
+      return "🌟 名扬四海";
     }
     
     switch (norm) {
       case '经费不足':
-        return "💸 经费耗尽结局";
+        return "💸 捉襟见肘";
       case '无学生':
-        return "😵 崩溃结局";
+        return "😵 土崩瓦解";
       case '晋级链断裂':
-        return "💼 普通结局";
+        return "💼 水到渠成";
       case '赛季结束':
       default:
-        return "💼 普通结局";
+        return "💼 水到渠成";
     }
   } catch (e) {
     console.error('calculateFinalEnding error:', e);
-    return "❓ 未知结局";
+    return "❓ 扑朔迷离";
   }
 }
 
@@ -1824,7 +1824,14 @@ function outingTrainingUI() {
     const outTalentGrid = document.getElementById('out-talent-grid');
     if(outTalentGrid && window.TalentManager){
       const allTalents = window.TalentManager.getRegistered() || [];
-      allTalents.forEach(talentName => {
+      // 只显示可以在集训中获得的天赋 (trainable: true)
+      const trainableTalents = allTalents.filter(talentName =>
+      {
+        const talentDef = window.TalentManager.getTalent(talentName);
+        return talentDef && talentDef.trainable !== false; // 默认true，所以检查是否为false
+      });
+      trainableTalents.forEach(talentName =>
+      {
         const info = window.TalentManager.getTalentInfo(talentName) || { name: talentName, description: '', color: '#2b6cb0' };
         const card = document.createElement('div');
         card.className = 'talent-card';
