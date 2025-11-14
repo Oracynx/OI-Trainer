@@ -909,6 +909,13 @@ function checkAndTriggerEnding() {
   const activeStudentCount = Array.isArray(game.students) ? game.students.filter(s => s && s.active !== false).length : 0;
   try{ if(typeof window !== 'undefined' && window.__OI_DEBUG_ENDING) console.debug('[ENDING DEBUG] checkAndTriggerEnding activeStudentCount=', activeStudentCount, 'students=', game.students.map(s=>({name: s && s.name, active: s && s.active}))); }catch(e){}
   
+  // 身败名裂结局 - 声誉低于0时立即结束游戏
+  if (game.reputation < 0)
+  {
+    triggerGameEnding('身败名裂');
+    return true;
+  }
+
   if (game.budget <= 0) {
     triggerGameEnding('经费不足');
     return true;
@@ -1058,7 +1065,6 @@ function evictSingle(idx){
   try{ if(typeof window !== 'undefined' && window.__OI_DEBUG_ENDING) console.debug('[ENDING DEBUG] evictSingle called idx=', idx, 'student=', student.name, 'preActive=', student.active); }catch(e){}
   student.active = false;
   game.reputation -= EVICT_REPUTATION_COST;
-  if(game.reputation < 0) game.reputation = 0;
   log(`劝退学生 ${student.name}，声誉 -${EVICT_REPUTATION_COST}`);
   renderAll();
   try{ 
