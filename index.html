@@ -8,14 +8,8 @@
   <!-- Clarity tracking removed -->
   <!-- Cloudflare Web Analytics loader (conditional: only load if page load time <= 2s) -->
   <script>
-    (function(){
-      function injectCF(){
-        var s = document.createElement('script');
-        s.defer = true;
-        s.src = 'https://static.cloudflareinsights.com/beacon.min.js';
-        s.setAttribute('data-cf-beacon', '{"token": "cd3db41765ea4c17be0930b3f94e3c3a"}');
-        document.head.appendChild(s);
-      }
+      (function ()
+      {
       function shouldLoad(){
         try{
           // navigationStart -> now
