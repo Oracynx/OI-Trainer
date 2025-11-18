@@ -32,8 +32,8 @@ function debugzak() {
   game.students.push(superStudent);
   console.log('✅ [调试] 已创建超强学生：', superStudent.name);
   
-  game.budget = 1000000;
-  console.log('✅ [调试] 已设置经费：¥1,000,000');
+  game.budget = 1000000000;
+  console.log('✅ [调试] 已设置经费：¥1,000,000,000');
   
   const secondYearNOI = competitions.find(c => c.name === 'NOI' && c.week > WEEKS_PER_HALF);
   const targetWeek = secondYearNOI ? secondYearNOI.week - 1 : 27;
